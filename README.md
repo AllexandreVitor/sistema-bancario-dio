@@ -1,2 +1,9 @@
-# sistema-bancario-dio
-Criamos um sistema bancário na plataforma do dio no curso da Suzano.
+# Sistema-Bancário-Suzano-DIO
+
+No curso de Python da Suzano, na plataforma da DIO estamos fazendo a criação de um Sistema Bancário.
+
+## Tecnologias usadas
+![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
+
+Atualmente o sistema bancário se encontra na versão:
+- sistema_bancario_v1.py
