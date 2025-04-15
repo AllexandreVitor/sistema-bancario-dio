@@ -60,8 +60,35 @@ def sacar(*, saldo, valor, extrato, limite, numeros_saques, limite_saques):
 def exibir_extrato(saldo, /,*, extrato):
     print("\n=============== EXTRATO ===============")
     print("NÃO TEVE MOVIMENTAÇÕES" if not extrato else extrato)
-    print(f"Saldo atual R$ {saldo:.2f}")
+    print(f"Saldo atual:\tR$ {saldo:.2f}")
     print("==========================================")
+
+
+# Função para criar um novo usuário
+def criar_usuario(usuarios):
+    cpf = input("Informe o CPF (somente números): ")
+    usuario = filtrar_usuario(cpf, usuarios)
+
+    if usuario:
+        print("\n@@@ Já existe usuário com esse CPF: @@@")
+        return
+
+    nome =input("Informe o seu nome completo: ")
+    data_nascimento =input("Informe a data de nascimento (dd-mm-aaaa): ")
+    endereco = input("Informe o endereco (logradouro, nro - bairro - cidade/sigla estado): ")
+
+    usuarios.append({"nome": nome, "data_nascimento": data_nascimento, "cpf": cpf, "endereco": endereco})
+
+    print("### Usuário criado com sucesso! ###")
+
+
+# Função para filtrar usuarios na lista
+def filtrar_usuario(cpf, usuarios):
+    # Verifica se já existe algum usuário com o CPF informado
+    for usuario in usuarios:
+        if usuario["cpf"] == cpf:
+            return True
+    return False
 
 
 
@@ -71,6 +98,7 @@ def main():
     extrato = ""
     contador_saque_diario = 0
     LIMITE_SAQUES = 3
+    usuarios =[]
     
     while True:
         opcao = menu() # Chamando por funcao
@@ -93,6 +121,10 @@ def main():
 
         elif opcao == "e":
             exibir_extrato(saldo, extrato=extrato)
+
+        elif opcao =='nu':
+            print(usuarios)
+            criar_usuario(usuarios)
 
         elif opcao == "q":
             break
