@@ -1,10 +1,19 @@
-menu = """
-[d] Depositar
-[s] Sacar
-[e] Extrato
-[q] Sair
+# módulo para formatação de texto eficiente
+import textwrap
 
-=> """
+def menu():
+    menu ="""\n
+    =============== MENU ===============
+    [d]\tDepositar
+    [s]\tSacar
+    [e]\tExtrato
+    [nc]\tNova conta
+    [lc]\tListar conta
+    [nu]\tNovo usuário
+    [q]\tSair
+
+    => """
+    return input(textwrap.dedent(menu))
 
 saldo = 0
 LIMITE_VALOR_SAQUE = 500
