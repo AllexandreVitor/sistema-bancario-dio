@@ -17,6 +17,19 @@ def menu():
     return input(textwrap.dedent(menu))
 
 
+# Recebe argumentos apenas por posição (Positional only)
+def depositar(saldo, valor, extrato, /):
+    if valor > 0:
+        saldo += valor
+        extrato += f"Depósito: R$ {valor:.2f}\n"
+        print("\n### Depósito realizado com sucesso! ###")
+    else:
+        print("\n### Operação falhou! O valor informado é inválido. ###")
+    return saldo, extrato
+
+    
+
+
 def main():
     saldo = 0
     LIMITE_VALOR_SAQUE = 500
@@ -30,13 +43,7 @@ def main():
         if opcao == "d":
             print("Deposito")
             valor_deposito = float(input("Informe o valor para depósito: "))
-        
-            if valor_deposito > 0:
-                saldo += valor_deposito
-                extrato +=f"Depósito: R$ {valor_deposito:.2f}\n"
-                print("Depósito realizado com sucesso!")
-            else:
-                print("Operação falhou: O valor informado é inválido")
+            saldo, extrato = depositar(saldo, valor_deposito, extrato)
         
         elif opcao == "s":
             print("Saque")
