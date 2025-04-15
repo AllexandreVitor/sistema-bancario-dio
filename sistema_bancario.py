@@ -55,6 +55,16 @@ def sacar(*, saldo, valor, extrato, limite, numeros_saques, limite_saques):
 
     return saldo, extrato, numeros_saques
 
+
+# Exibir extrato por posição e nome (Positional only e Keywords only)
+def exibir_extrato(saldo, /,*, extrato):
+    print("\n=============== EXTRATO ===============")
+    print("NÃO TEVE MOVIMENTAÇÕES" if not extrato else extrato)
+    print(f"Saldo atual R$ {saldo:.2f}")
+    print("==========================================")
+
+
+
 def main():
     saldo = 0
     LIMITE_VALOR_SAQUE = 500
@@ -82,10 +92,7 @@ def main():
                 limite_saques=LIMITE_SAQUES)
 
         elif opcao == "e":
-            print("\n********** EXTRATO **********")
-            print("NÃO TEVE MOVIMENTAÇÕES" if not extrato else extrato)
-            print(f"Saldo atual R$ {saldo:.2f}")
-            print("*****************************")
+            exibir_extrato(saldo, extrato=extrato)
 
         elif opcao == "q":
             break
