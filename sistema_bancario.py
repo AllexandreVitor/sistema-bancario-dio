@@ -91,14 +91,28 @@ def filtrar_usuario(cpf, usuarios):
     return False
 
 
+# Função para criação de conta
+def criar_conta(agencia, numero_conta, usuarios):
+    cpf = input("Informe o CPF do usuário: ")
+    usuario = filtrar_usuario(cpf, usuarios)
+
+    if usuario:
+        print("\n### Conta criada com sucesso! ###")
+        return {"agencia": agencia, "numero_conta": numero_conta, "usuario": usuario}
+    
+    print("\n@@@ Usuário não encontrado, fluxo de criação de conta encerrado! @@@")
+
 
 def main():
-    saldo = 0
+    AGENCIA = "0001"
     LIMITE_VALOR_SAQUE = 500
+    LIMITE_SAQUES = 3
+
+    saldo = 0
     extrato = ""
     contador_saque_diario = 0
-    LIMITE_SAQUES = 3
     usuarios =[]
+    contas = []
     
     while True:
         opcao = menu() # Chamando por funcao
@@ -122,9 +136,17 @@ def main():
         elif opcao == "e":
             exibir_extrato(saldo, extrato=extrato)
 
-        elif opcao =='nu':
-            print(usuarios)
+        elif opcao == "nu":
             criar_usuario(usuarios)
+
+        elif opcao == "nc":
+            numero_conta = len(contas) + 1
+            conta = criar_conta(AGENCIA, numero_conta, usuarios)
+
+            # Forma diferente da criação usuario
+            # Faz essa verificação para não armazenar na lista contas vazias pois o retorno da função se usuario for falso é none
+            if conta:
+                contas.append(conta)
 
         elif opcao == "q":
             break
