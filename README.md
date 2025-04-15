@@ -7,3 +7,4 @@ No curso de Python da "Suzano - Python Developer", na plataforma da DIO estamos 
 
 Atualmente o sistema bancário se encontra na versão:
 - sistema_bancario_v1.py
+- sistema_bancario_v2.py
