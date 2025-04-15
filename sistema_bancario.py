@@ -1,6 +1,7 @@
 # módulo para formatação de texto eficiente
 import textwrap
 
+# Função para o menu
 def menu():
     menu ="""\n
     =============== MENU ===============
@@ -25,7 +26,7 @@ LIMITE_SAQUES = 3
 
 
 while True:
-    opcao = input(menu)
+    opcao = menu() # Chamando por funcao
 
     if opcao == "d":
         print("Deposito")
