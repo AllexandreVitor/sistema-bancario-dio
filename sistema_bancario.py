@@ -87,8 +87,8 @@ def filtrar_usuario(cpf, usuarios):
     # Verifica se já existe algum usuário com o CPF informado
     for usuario in usuarios:
         if usuario["cpf"] == cpf:
-            return True
-    return False
+            return usuario # Retorna dicionário do usuario
+    return None # CPF não encontrado, retorna None
 
 
 # Função para criação de conta
@@ -101,6 +101,19 @@ def criar_conta(agencia, numero_conta, usuarios):
         return {"agencia": agencia, "numero_conta": numero_conta, "usuario": usuario}
     
     print("\n@@@ Usuário não encontrado, fluxo de criação de conta encerrado! @@@")
+    return None
+
+# Função para listar contas existentes
+def listar_contas(contas):
+    for conta in contas:
+        linha = f"""\
+            Agência:\t{conta['agencia']}
+            C/C:\t\t{conta['numero_conta']}
+            Titular:\t{conta['usuario']['nome']}
+        """
+        
+        print("=" * 100)
+        print(textwrap.dedent(linha))
 
 
 def main():
@@ -147,6 +160,9 @@ def main():
             # Faz essa verificação para não armazenar na lista contas vazias pois o retorno da função se usuario for falso é none
             if conta:
                 contas.append(conta)
+
+        elif opcao == "lc":
+            listar_contas(contas)
 
         elif opcao == "q":
             break
