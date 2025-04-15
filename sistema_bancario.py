@@ -28,7 +28,32 @@ def depositar(saldo, valor, extrato, /):
     return saldo, extrato
 
     
+# Recebe argumentos apenas por nome (Keywords only)
+def sacar(*, saldo, valor, extrato, limite, numeros_saques, limite_saques):
+    excedeu_saldo = valor > saldo
+    excedeu_limite = valor > limite
+    excedeu_saques = numeros_saques >= limite_saques
 
+    if excedeu_saldo:
+        print("\n@@@ Operação falhou. Você não tem saldo suficiente. @@@")
+
+    elif excedeu_limite:
+        print("\n@@@ Operação falhou. O valor do saque excede o limite permitido. @@@")
+
+    elif excedeu_saques:
+        print("\n@@@ Operação falhou. Quantidade máximo de saques realizados. @@@")
+
+    elif valor > 0:
+        saldo -= valor
+        extrato += f"Saque: R$ {valor:.2f}\n"
+        numeros_saques += 1
+        print("Saque realizado com sucesso.")
+        print(f"Saques realizados hoje: {numeros_saques}")
+
+    else:
+        print("Operação falhou. O valor informado é inválido.")
+
+    return saldo, extrato, numeros_saques
 
 def main():
     saldo = 0
@@ -48,25 +73,13 @@ def main():
         elif opcao == "s":
             print("Saque")
             valor_saque = float(input("Informe o valor do saque: "))
-
-            excedeu_saldo = valor_saque > saldo
-            excedeu_limite = valor_saque > LIMITE_VALOR_SAQUE
-            excedeu_saques = contador_saque_diario >= LIMITE_SAQUES
-
-            if excedeu_saldo:
-                print("Operação falhou. Você não tem saldo suficiente.")
-            elif excedeu_limite:
-                print("Operação falhou. O valor do saque excede o limite permitido.")
-            elif excedeu_saques:
-                print("Operação falhou. Quantidade máximo de saques realizados.")
-        
-            elif valor_saque > 0:
-                saldo -= valor_saque
-                extrato += f"Saque: R$ {valor_saque:.2f}\n"
-                contador_saque_diario += 1
-                print("Saque realizado com sucesso.")
-            else:
-                print("Operação falhou. O valor informado é inválido.")
+            saldo, extrato, contador_saque_diario = sacar(
+                saldo=saldo, 
+                valor=valor_saque,
+                extrato=extrato,
+                limite=LIMITE_VALOR_SAQUE,
+                numeros_saques=contador_saque_diario,
+                limite_saques=LIMITE_SAQUES)
 
         elif opcao == "e":
             print("\n********** EXTRATO **********")
