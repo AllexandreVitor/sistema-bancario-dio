@@ -274,6 +274,23 @@ def exibir_extrato(clientes):
     print("============================")
 
 
+def criar_cliente(clientes):
+    cliente = obter_conta_cliente(clientes)
+    if cliente:
+        print("\n@@@ Já existe cliente com esse CPF! @@@")
+        return
+    
+    nome = input("Informe o nome completo: ")
+    data_nascimento = input("Informe a data de nascimento (dd-mm-aaaa): ")
+    endereco = input("Informe o endereço (logradouro, nro - bairro - cidade/sigla estado): ")
+
+    cliente = PessoaFisica(nome=nome, data_nascimento=data_nascimento, cpf=cpf, endereco= endereco)
+
+    clientes.append(cliente)
+
+    print("\n=== Cliente criado com sucesso! ===")
+
+
 def criar_contas(numero_conta, clientes, contas):
     cliente = obter_conta_cliente(clientes)
     if not cliente:
