@@ -1,5 +1,5 @@
-# módulo para formatação de texto eficiente
-import textwrap
+from abc import ABC, abstractclassmethod, abstractproperty
+from datetime import datetime
 
 # Função para o menu
 def menu():
