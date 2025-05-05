@@ -1,3 +1,4 @@
+# Adaptação do código para POO
 from abc import ABC, abstractclassmethod, abstractproperty
 from datetime import datetime
 
