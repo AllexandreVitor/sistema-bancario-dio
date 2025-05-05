@@ -209,14 +209,9 @@ def obter_conta_cliente(clientes):
 
     if not cliente:
         print("\n@@@ Cliente não encontrado! @@@")
-        return None, None
+        return None
     
-    conta = recuperar_conta_cliente(cliente)
-    if not conta:
-        print("\n@@@ Conta não encontrada! @@@")
-        return None, None
-    
-    return cliente, conta
+    return cliente
 
 
 def depositar(clientes):
