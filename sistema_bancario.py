@@ -272,3 +272,15 @@ def exibir_extrato(clientes):
     print(extrato)
     print(f"\nSaldo:\n\tR$ {conta.saldo:.2f}")
     print("============================")
+
+
+def criar_contas(numero_conta, clientes, contas):
+    cliente = obter_conta_cliente(clientes)
+    if not cliente:
+        return
+    
+    conta = ContaCorrente.nova_conta(cliente=cliente, numero=numero_conta)
+    contas.append(conta)
+    cliente.contas.append(conta)
+
+    print("\n=== Conta criada com sucesso! ===")
