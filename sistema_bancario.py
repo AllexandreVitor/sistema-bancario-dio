@@ -203,6 +203,22 @@ def recuperar_conta_cliente(cliente):
     return cliente.contas[0]
 
 
+def obter_conta_cliente(clientes):
+    cpf = input("Informe o CPF do cliente: ")
+    cliente = filtrar_cliente(cpf, clientes)
+
+    if not cliente:
+        print("\n@@@ Cliente não encontrado! @@@")
+        return None, None
+    
+    conta = recuperar_conta_cliente(cliente)
+    if not conta:
+        print("\n@@@ Conta não encontrada! @@@")
+        return None, None
+    
+    return cliente, conta
+
+
 def depositar(clientes):
     cliente = obter_conta_cliente(clientes)
     if not cliente:
@@ -234,17 +250,25 @@ def sacar(clientes):
     cliente.realizar_transacao(conta, transacao)
 
 
-def obter_conta_cliente(clientes):
-    cpf = input("Informe o CPF do cliente: ")
-    cliente = filtrar_cliente(cpf, clientes)
-
+def exibir_extrato(clientes):
+    cliente = obter_conta_cliente(clientes)
     if not cliente:
-        print("\n@@@ Cliente não encontrado! @@@")
-        return None, None
+        return
     
     conta = recuperar_conta_cliente(cliente)
     if not conta:
-        print("\n@@@ Conta não encontrada! @@@")
-        return None, None
+        return
     
-    return cliente, conta
+    print("\n========== EXTRATO ==========")
+    transacoes = conta.historico.transacoes
+
+    extrato = ""
+    if not transacoes:
+        extrato = "Não foram realizadas movimentações."
+    else:
+        for transacao in transacoes:
+            extrato += f"\n{transacao['tipo']}:\n\tR${transacao['valor']:.2f}"
+    
+    print(extrato)
+    print(f"\nSaldo:\n\tR$ {conta.saldo:.2f}")
+    print("============================")
