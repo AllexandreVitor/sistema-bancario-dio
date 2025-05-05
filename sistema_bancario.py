@@ -204,11 +204,8 @@ def recuperar_conta_cliente(cliente):
 
 
 def depositar(clientes):
-    cpf = input("Informe o CPF do cliente: ")
-    cliente = filtrar_cliente(cpf, clientes)
-
+    cliente = obter_conta_cliente(clientes)
     if not cliente:
-        print("\n@@@ Cliente não encontrado! @@@")
         return
     
     valor = float(input("Informe o valor do depósito: "))
@@ -222,9 +219,7 @@ def depositar(clientes):
 
 
 def sacar(clientes):
-    cpf = input("Informe o CPF do cliente: ")
-    cliente = filtrar_cliente(cpf, clientes)
-
+    cliente = obter_conta_cliente(clientes)
     if not cliente:
         print("\n@@@ Cliente não encontrado! @@@")
         return
