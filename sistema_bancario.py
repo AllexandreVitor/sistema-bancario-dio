@@ -237,3 +237,19 @@ def sacar(clientes):
         return
     
     cliente.realizar_transacao(conta, transacao)
+
+
+def obter_conta_cliente(clientes):
+    cpf = input("Informe o CPF do cliente: ")
+    cliente = filtrar_cliente(cpf, clientes)
+
+    if not cliente:
+        print("\n@@@ Cliente não encontrado! @@@")
+        return None, None
+    
+    conta = recuperar_conta_cliente(cliente)
+    if not conta:
+        print("\n@@@ Conta não encontrada! @@@")
+        return None, None
+    
+    return cliente, conta
