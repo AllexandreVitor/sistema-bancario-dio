@@ -275,7 +275,9 @@ def exibir_extrato(clientes):
 
 
 def criar_cliente(clientes):
-    cliente = obter_conta_cliente(clientes)
+    cpf = input("Informe o CPF (somente números): ")
+    cliente = filtrar_cliente(cpf, clientes)
+
     if cliente:
         print("\n@@@ Já existe cliente com esse CPF! @@@")
         return
@@ -340,3 +342,6 @@ def main():
 
         else:
             print("\n@@@ Operação inválida, por favor seleciona novamente a operação desejada. @@@")
+
+
+main()
