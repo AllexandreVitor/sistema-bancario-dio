@@ -284,3 +284,9 @@ def criar_contas(numero_conta, clientes, contas):
     cliente.contas.append(conta)
 
     print("\n=== Conta criada com sucesso! ===")
+
+
+def listar_contas(contas):
+    for conta in contas:
+        print("=" * 100)
+        print(textwrap.dedent(str(conta)))
