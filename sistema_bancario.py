@@ -226,7 +226,7 @@ def depositar(clientes):
     if not conta:
         return
     
-    conta.realizar_transacao(conta, transacao)
+    cliente.realizar_transacao(conta, transacao)
 
 
 def sacar(clientes):
