@@ -14,6 +14,15 @@ class Cliente:
     def adicionar_conta(self, conta):
         self.contas.append(conta)
 
+
+class PessoaFisica(Cliente):
+    def __init__(self, nome, data_nascimento, cpf, endereco):
+        super().__init__(endereco) # Herdou de Cliente
+        self.nome = nome
+        self.data_nascimento = data_nascimento
+        self.cpf = cpf
+
+
 # Função para o menu
 def menu():
     menu ="""\n
